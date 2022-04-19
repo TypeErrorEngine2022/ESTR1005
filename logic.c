@@ -27,7 +27,7 @@ void comp_state(cell *board, int row, int col){
 }
 
 
-void life(game_t *game){ //receive 1D array
+void life(game_t *game){
     for (int row = 0; row < SIZE; row++){
         for (int col = 0; col < SIZE; col++){
             comp_state(game -> board,row, col);
