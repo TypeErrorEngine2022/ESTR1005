@@ -5,18 +5,25 @@
 #include "logic.h"
 
 
-int main()
+int main(int argc, char *argv[]) //to have no conflict with SDL main
 {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) return EXIT_FAILURE;
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        printf("Unanbled to initialize SDL: %s\n", SDL_GetError());
+        return EXIT_FAILURE;
+    }
 
     SDL_Window *window = SDL_CreateWindow("Game of Life", 200, 200, SIZE, SIZE, SDL_WINDOW_SHOWN);
 
-    if (window == NULL) return EXIT_FAILURE;
+    if (window == NULL) {
+        printf("Window opening error\n");
+        return EXIT_FAILURE;
+    }
 
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     if (renderer == NULL){
         SDL_DestroyWindow(window);
+        printf("Render opening error\n");
         return EXIT_FAILURE;
     }
 
